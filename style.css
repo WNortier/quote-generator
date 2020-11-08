@@ -1,0 +1,10 @@
+html {
+/* Prevents padding from adding width to the body */
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: aliceblue;
+}
