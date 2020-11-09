@@ -28,7 +28,6 @@ const getQuote = () => {
     fetch(proxyUrl + apiUrl)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         // If author is blank add 'Unknown'
         if (data.quoteAuthor === "") {
           authorText.innerText = "Unknown";
