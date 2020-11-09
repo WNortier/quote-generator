@@ -5,8 +5,22 @@ const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
 const twitterBtn = document.getElementById("twitter");
 const newQuoteBtn = document.getElementById("new-quote");
+const loader = document.getElementById("loader");
+
+const showLoading = () => {
+  loader.hidden = false;
+  quoteContainer.hidden = true;
+};
+
+const hideLoading = () => {
+  if (!loader.hidden) {
+    quoteContainer.hidden = false;
+    loader.hidden = true;
+  }
+};
 
 const getQuote = () => {
+  showLoading();
   new Promise(() => {
     const proxyUrl = "https://cors-anywhere.herokuapp.com/";
     const apiUrl =
@@ -28,8 +42,10 @@ const getQuote = () => {
           quoteText.classList.remove("long-quote");
         }
         quoteText.innerText = data.quoteText;
+        hideLoading();
       })
       .catch((error) => {
+        getQuote();
         console.log("whoops, no quote", error);
       });
   });
